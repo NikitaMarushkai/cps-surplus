@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<h1>You have a customer request!</h1>
+<h2>From CNH-Surplus</h2>
+<span th:text="'Customer email: ' + ${email} + ';'"></span><br/>
+<span th:text="'Subject: ' + ${subject} + ';'"></span><br/>
+<span th:text="'Customer name: ' + ${name} + ';'"></span><br/>
+<span th:text="'Customers message: ' + ${message} + ';'"></span><br/>
+</body>
+</html>
