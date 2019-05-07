@@ -24,7 +24,7 @@ class MailClient {
         MimeMessagePreparator messagePreparator = {
             MimeMessageHelper messageHelper = new MimeMessageHelper(it);
             messageHelper.setFrom(contactForm.email);
-            messageHelper.setTo("unlimited54321@mail.ru");
+            messageHelper.setTo("francis@parts-on-line.be");
             messageHelper.setSubject("CNH-surplus request " + contactForm.subject);
             String content = contentBuilder.build(contactForm);
             messageHelper.setText(content, true);
