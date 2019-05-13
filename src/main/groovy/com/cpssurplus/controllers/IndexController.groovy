@@ -22,7 +22,7 @@ class IndexController {
         return "index"
     }
 
-    @PostMapping("/mail")
+    @PostMapping("/sendMail")
     String processMailForm(Model model, @ModelAttribute ContactForm contactForm) {
         mailClient.prepareAndSend(contactForm);
         model.addAttribute("contactform", new ContactForm());
