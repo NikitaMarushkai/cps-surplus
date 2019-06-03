@@ -681,6 +681,10 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-radius: 4px 4px 0 0;
 }
 
+img.img-fluid {
+  border: 8px outset #d2e3ed;
+}
+
 #about .about-col .icon {
   width: 64px;
   height: 64px;
