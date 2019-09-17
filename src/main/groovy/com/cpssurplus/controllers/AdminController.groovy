@@ -25,7 +25,7 @@ class AdminController {
     }
 
     @PostMapping("/import")
-    String readExcel(@RequestParam("file") MultipartFile excelFile, CountryCode country) {
+    String readExcel(@RequestParam("excelFile") MultipartFile excelFile, CountryCode country) {
         uploadService.savePriceList(excelFile, country)
         //todo: return number of saved items
         return "redirect:/admin"

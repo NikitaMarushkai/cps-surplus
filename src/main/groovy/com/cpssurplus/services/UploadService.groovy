@@ -3,9 +3,9 @@ package com.cpssurplus.services
 import com.cpssurplus.domains.entities.CatalogueItem
 import com.cpssurplus.enums.CountryCode
 import com.cpssurplus.repositories.CatalogueItemRepository
-import org.apache.poi.xssf.usermodel.XSSFRow
-import org.apache.poi.xssf.usermodel.XSSFSheet
-import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import org.apache.poi.hssf.usermodel.HSSFRow
+import org.apache.poi.hssf.usermodel.HSSFSheet
+import org.apache.poi.hssf.usermodel.HSSFWorkbook
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
@@ -20,8 +20,8 @@ class UploadService {
 
     @Transactional
     Integer savePriceList(MultipartFile excelFile, CountryCode location) {
-        XSSFWorkbook workbook = new XSSFWorkbook(excelFile.getInputStream())
-        XSSFSheet worksheet = workbook.getSheetAt(0)
+        HSSFWorkbook workbook = new HSSFWorkbook(excelFile.getInputStream())
+        HSSFSheet worksheet = workbook.getSheetAt(0)
 
         List<CatalogueItem> itemsList = []
 
@@ -38,12 +38,12 @@ class UploadService {
         itemsList.size()
     }
 
-    private static List<CatalogueItem> fillBelgiumStock(XSSFSheet worksheet) {
+    private static List<CatalogueItem> fillBelgiumStock(HSSFSheet worksheet) {
         List<CatalogueItem> itemsList = []
         def rowNums = worksheet.getPhysicalNumberOfRows() - 9
         rowNums.times {
             def index = it + 10
-            XSSFRow sheetRow = worksheet.getRow(index)
+            HSSFRow sheetRow = worksheet.getRow(index)
             CatalogueItem catalogueRow = new CatalogueItem(
                     partNumber: sheetRow.getCell(1).getStringCellValue(),
                     description: sheetRow.getCell(3).getStringCellValue(),
@@ -60,12 +60,12 @@ class UploadService {
         itemsList
     }
 
-    private static List<CatalogueItem> fillUzbekistanStock(XSSFSheet worksheet) {
+    private static List<CatalogueItem> fillUzbekistanStock(HSSFSheet worksheet) {
         List<CatalogueItem> itemsList = []
         def rowNums = worksheet.getPhysicalNumberOfRows() - 4
         rowNums.times {
             def index = it + 5
-            XSSFRow sheetRow = worksheet.getRow(index)
+            HSSFRow sheetRow = worksheet.getRow(index)
             CatalogueItem catalogueRow = new CatalogueItem(
                     partNumber: sheetRow.getCell(7).getStringCellValue(),
                     description: sheetRow.getCell(8).getStringCellValue(),
