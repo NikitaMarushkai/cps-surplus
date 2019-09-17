@@ -11,3 +11,6 @@ CREATE TABLE catalogue_item(
 );
 
 CREATE SEQUENCE seq_catalogue_item OWNED BY catalogue_item.id;
+
+CREATE INDEX catalogue_part_number_idx ON catalogue_item(part_number);
+CREATE INDEX catalogue_description_idx ON catalogue_item(description);
