@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull
 @Table(name = "catalogue_item")
 class CatalogueItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Integer id
 
     @NotNull
@@ -42,6 +42,7 @@ class CatalogueItem {
     @Column(name = "note")
     String note
 
-    @Column(name = "location")
+    @NotNull
+    @Column(name = "location", nullable = false)
     CountryCode location
 }

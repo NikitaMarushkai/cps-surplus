@@ -9,11 +9,11 @@ spring:
   thymeleaf:
     cache: false
     mode: LEGACYHTML5
-  flyway:
-    url: jdbc:postgresql://127.0.0.1:5432/
-    user: surplus
-    password: surplus
-    schemas: surplus
+#  flyway:
+#    url: jdbc:postgresql://127.0.0.1:5432/
+#    user: surplus
+#    password: surplus
+#    schemas: surplus
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://127.0.0.1:5432/surplus
