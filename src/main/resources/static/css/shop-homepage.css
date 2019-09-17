@@ -6,3 +6,10 @@
 body {
   padding-top: 70px;
 }
+
+.search {
+  padding: 20px;
+  margin: 20px;
+  background: black;
+  border-radius: 10px;
+}

@@ -57,7 +57,7 @@
         <div class="container-fluid">
 
             <div id="logo" class="pull-left">
-                <h1><a href="#intro" class="scrollto">CNHi SURPLUS STOCK Worldwide</a></h1>
+                <h1><a href="/#intro" class="scrollto">CNHi SURPLUS STOCK Worldwide</a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="#intro"><img src="/img/logo.png" alt="" title="" /></a>-->
             </div>
@@ -77,7 +77,7 @@
                     <!--              <li><a href="#">Drop Down 5</a></li>-->
                     <!--            </ul>-->
                     <!--          </li>-->
-                    <li><a href="#contact">Contact us</a></li>
+                    <li><a href="/#contact">Contact us</a></li>
                 </ul>
             </nav><!-- #nav-menu-container -->
         </div>
@@ -222,7 +222,7 @@
      Search section
    ============================-->
     <section class="search-sec" id="search">
-        <div class="container">
+        <div class="container" th:fragment="search">
             <form th:action="@{/parts/search}" th:object="${searchForm}" method="post" role="form"
                   novalidate="novalidate">
                 <div class="row">
@@ -237,7 +237,7 @@
                                        placeholder="Enter Part Name">
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 p-0">
-                                <button type="submit" class="btn btn-danger wrn-btn">Search</button>
+                                <button type="submit" class="btn btn-common wrn-btn">Search</button>
                             </div>
                         </div>
                     </div>

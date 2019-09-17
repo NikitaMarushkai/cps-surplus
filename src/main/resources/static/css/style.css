@@ -15,6 +15,12 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+.btn-common {
+  color: #fff;
+  background-color: #18d26e;
+  border-color: #18d26e;
+}
+
 a {
   color: #18d26e;
   transition: 0.5s;
