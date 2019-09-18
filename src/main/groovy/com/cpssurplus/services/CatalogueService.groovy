@@ -17,4 +17,8 @@ class CatalogueService {
                 searchForm.partName)
     }
 
+    CatalogueItem getItem(Integer id) {
+        catalogueItemRepository.getOne(id)
+    }
+
 }

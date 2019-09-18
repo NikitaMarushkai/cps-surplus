@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="index::head"></head>
+<div id="extra-styles">
+    <link href="/css/shop-item.css" rel="stylesheet">
+</div>
+
+<body>
+<div id="header" th:include="index::common-header"></div>
+<!-- Page Content -->
+<!--/*@thymesVar id="item" type="com.cpssurplus.domains.entities.CatalogueItem"*/-->
+<div th:object="${item}" class="container">
+
+    <div class="row">
+
+        <div class="card mt-4 col-lg-12">
+            <div class="card-body">
+                <h3 class="card-title" th:text="'Part number: ' + ${item.partNumber}"></h3>
+                <h4 th:text="'$' + ${item.price}"></h4>
+                <p class="card-text" th:text="${item.description}"></p>
+                <p class="card-text" th:text="'Item weight: ' + ${item.weight} + 'kg'"></p>
+                <p class="card-text" th:text="${item.dimensions}? 'Package dimensions: ' + ${item.dimensions} : ''"></p>
+                <p class="card-text" th:text="'Item location: ' + ${item.location}"></p>
+                <span>We have </span>
+                <span class="text-danger" th:text="${item.qty}"></span>
+                <span> items available</span>
+            </div>
+        </div>
+        <!-- /.card -->
+
+        <div class="card card-outline-secondary my-4 col-lg-12">
+            <div class="card-header">
+                You wish to order? Just fill up a form and your order will be processed!
+            </div>
+            <div class="card-body" id="contact">
+                <div class="form">
+                  <div id="errormessage"></div>
+                  <!--/*@thymesVar id="orderForm" type="com.cpssurplus.domains.forms.OrderForm"*/-->
+                    <form th:action="@{/parts/order}" method="post" role="form" th:object="${orderForm}" class="contactForm">
+                        <div class="form-group">
+                            <input type="text" th:field="*{name}" name="name" class="form-control" id="name"
+                                   placeholder="Your Name" data-rule="minlen:2"
+                                   data-msg="Please enter at least 2 chars"/>
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="email" th:field="*{email}" class="form-control" name="email" id="email"
+                                       placeholder="Your Email" data-rule="email"
+                                       data-msg="Please enter a valid email"/>
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" th:field="*{phone}" class="form-control" name="phone" id="phone"
+                                       placeholder="Your phone"/>
+                            </div>
+                        </div>
+                        <input type="hidden" th:value="${item.partNumber}" name="partNumber"/>
+                        <input type="hidden" th:value="${item.id}" name="partId"/>
+                        <div class="form-group">
+                            <input type="number" th:field="*{qty}" class="form-control" name="qty" id="qty"
+                                   placeholder="Number of items to order" min="1" th:max="${item.qty}"/>
+                        </div>
+                        <div class="form-group">
+                        <textarea class="form-control" th:field="*{comment}" name="message" rows="5"
+                                  placeholder="Comments to your order"></textarea>
+                        </div>
+                        <div class="align-center text-center">
+                            <button type="submit" class="btn btn-success">Order</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.card -->
+
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+<footer id="footer" th:include="index::footer"></footer>
+
+<div th:include="index::scripts"></div>
+
+</body>
+
+</html>

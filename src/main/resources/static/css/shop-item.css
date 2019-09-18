@@ -1,0 +1,22 @@
+/*!
+ * Start Bootstrap - Shop Item (https://startbootstrap.com/template-overviews/shop-item)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-shop-item/blob/master/LICENSE)
+ */
+body {
+  padding-top: 56px;
+}
+
+#header {
+  background: rgba(0,0,0,0.58);
+}
+
+.card-header {
+  text-align: center;
+  color: #18d26e;
+  font-weight: bolder;
+}
+
+.align-center{
+  text-align: center;
+}
