@@ -19,7 +19,7 @@ class Customer {
 
     @NotNull
     @Size(max = 512)
-    @Column(name = 'email', nullable = false)
+    @Column(name = 'email', nullable = false, unique = true)
     String email
 
     @Size(max = 128)
@@ -28,5 +28,5 @@ class Customer {
 
     @Min(0l)
     @Column(name = 'orders_count')
-    Integer ordersCount
+    Integer ordersCount = 0
 }

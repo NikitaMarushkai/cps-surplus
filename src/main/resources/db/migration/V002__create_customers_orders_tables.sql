@@ -1,8 +1,8 @@
 CREATE TABLE customer(
     id int primary key,
-    email varchar(512) not null,
+    email varchar(512) not null unique,
     phone varchar(128),
-    orders_count int
+    orders_count int default 0
 );
 
 CREATE SEQUENCE seq_customer OWNED BY customer.id;
