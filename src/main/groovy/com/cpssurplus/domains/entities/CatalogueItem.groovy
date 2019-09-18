@@ -10,7 +10,9 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Table
+import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
+import javax.validation.constraints.Size
 
 @Entity
 @Table(name = "catalogue_item")
@@ -20,27 +22,34 @@ class CatalogueItem {
     Integer id
 
     @NotNull
+    @Size(max = 512)
     @Column(name = "part_number", nullable = false)
     String partNumber
 
+    @Size(max = 512)
     @Column(name = "description")
     String description
 
     @NotNull
+    @Min(0l)
     @Column(name = "price", nullable = false)
     BigDecimal price
 
     @NotNull
+    @Min(0l)
     @Column(name = "qty", nullable = false)
     Integer qty
 
     @NotNull
     @Column(name = "weight", nullable = false)
+    @Min(0l)
     BigDecimal weight
 
+    @Size(max = 512)
     @Column(name = "dimensions")
     String dimensions
 
+    @Size(max = 512)
     @Column(name = "note")
     String note
 
