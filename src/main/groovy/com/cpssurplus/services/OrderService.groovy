@@ -27,9 +27,13 @@ class OrderService {
         ordersRepository.getOne(id)
     }
 
+    List<Order> getOrders(List<Integer> orderIds = []) {
+        orderIds ? ordersRepository.findAllById(orderIds) : ordersRepository.findAll()
+    }
+
     @Transactional
     Order createOrder(OrderForm orderForm) {
-        Customer orderOwner = getOrRegisterCustomer(orderForm.email, orderForm.phone)
+        Customer orderOwner = getOrRegisterCustomer(orderForm.email, orderForm.phone, orderForm.name)
         CatalogueItem item = catalogueService.getItem(orderForm.partId)
         if (!orderOwner) {
             return null
@@ -50,12 +54,13 @@ class OrderService {
         //TODO: Increment customer's orders count here or after processing
     }
 
-    private Customer getOrRegisterCustomer(String email, String phone) {
+    private Customer getOrRegisterCustomer(String email, String phone, String name) {
         Customer customer = customersRepository.findByEmail(email)
         if (!customer) {
             customer = new Customer(
                     email: email,
-                    phone: phone
+                    phone: phone,
+                    name: name
             )
             customersRepository.save(customer)
         }

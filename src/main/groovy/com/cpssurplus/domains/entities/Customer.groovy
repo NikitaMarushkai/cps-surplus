@@ -17,6 +17,10 @@ class Customer {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Integer id
 
+    @Size(max = 512)
+    @Column(name = 'name')
+    String name
+
     @NotNull
     @Size(max = 512)
     @Column(name = 'email', nullable = false, unique = true)

@@ -1,5 +1,6 @@
 CREATE TABLE customer(
     id int primary key,
+    name varchar(512),
     email varchar(512) not null unique,
     phone varchar(128),
     orders_count int default 0

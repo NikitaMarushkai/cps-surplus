@@ -1,0 +1,165 @@
+<!--
+=========================================================
+ Paper Dashboard 2 - v2.0.0
+=========================================================
+
+ Product Page: https://www.creative-tim.com/product/paper-dashboard-2
+ Copyright 2019 Creative Tim (https://www.creative-tim.com)
+ Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard/blob/master/LICENSE)
+
+ Coded by Creative Tim
+
+=========================================================
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="admin-head">
+    <meta charset="utf-8"/>
+    <link href="/img/favicon.ico" rel="icon">
+    <link href="/img/apple-touch-icon.ico" rel="apple-touch-icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>
+        CPS Surplus admin panel
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <!-- CSS Files -->
+    <link href="/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/lib/paper-dashboard/css/paper-dashboard.css?v=2.0.0" rel="stylesheet"/>
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="/css/admin.css" rel="stylesheet"/>
+</head>
+
+<body class="">
+<div class="wrapper ">
+    <div th:fragment="admin-sidebar" class="sidebar" data-color="white" data-active-color="danger">
+        <!--
+          Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+      -->
+        <div class="logo">
+            <a class="simple-text logo-mini">
+                <div class="logo-image-small">
+                    <img src="/img/SmallLogo.png">
+                </div>
+            </a>
+            <a class="simple-text logo-normal">
+                CPS Surplus
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li>
+                    <a th:href="@{/admin/orders}">
+                        <i class="nc-icon nc-credit-card"></i>
+                        <p>Orders</p>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/customers}">
+                        <i class="nc-icon nc-satisfied"></i>
+                        <p>Customers</p>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/uploadPrice}">
+                        <i class="nc-icon nc-tile-56"></i>
+                        <p>Upload stock list</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+            <div class="container-fluid">
+                <div class="navbar-wrapper">
+                    <div class="navbar-toggle">
+                        <button type="button" class="navbar-toggler">
+                            <span class="navbar-toggler-bar bar1"></span>
+                            <span class="navbar-toggler-bar bar2"></span>
+                            <span class="navbar-toggler-bar bar3"></span>
+                        </button>
+                    </div>
+                    <a class="navbar-brand">Orders</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Orders</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th>Order #</th>
+                                    <th>Part number</th>
+                                    <th>QTY</th>
+                                    <th>Comment</th>
+                                    <th>Customer name</th>
+                                    <th>Customer email</th>
+                                    <th>Customer phone</th>
+                                    <th>Order status</th>
+                                    <th>Processing</th>
+                                    </thead>
+                                    <tbody>
+                                    <!--/*@thymesVar id="orders" type="java.util.ArrayList<com.cpssurplus.domains.entities.Order>"*/-->
+                                    <tr th:each="order, index : ${orders}">
+                                        <td th:text="${order.id}"></td>
+                                        <td th:text="${order.partNumber}"></td>
+                                        <td th:text="${order.qty}"></td>
+                                        <td th:text="${order.comment}"></td>
+                                        <td th:text="${order.customer.name}"></td>
+                                        <td th:text="${order.customer.email}"></td>
+                                        <td th:text="${order.customer.phone}"></td>
+                                        <td th:text="${order.status}"></td>
+                                        <th:block th:switch="${order.status}">
+                                          <td th:case="${T(com.cpssurplus.enums.OrderStatus).NEW}">
+                                            <a th:href="@{admin/changeOrderStatus(id=${order.id}, newStatus='PAYED')}">SET PAYED</a>
+                                          </td>
+                                          <td th:case="${T(com.cpssurplus.enums.OrderStatus).PAYED}">
+                                              <a th:href="@{admin/changeOrderStatus(id=${order.id}, newStatus='SHIPPED')}">SET SHIPPED</a>
+                                          </td>
+                                          <td th:case="${T(com.cpssurplus.enums.OrderStatus).SHIPPED}"></td>
+                                        </th:block>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+    <script src="/lib/popper/popper.min.js"></script>
+    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/lib/jquery/perfect-scrollbar.jquery.min.js"></script>
+    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="/lib/paper-dashboard/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+    <script src="/js/admin.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+            demo.initChartsPages();
+        });
+    </script>
+</body>
+
+</html>

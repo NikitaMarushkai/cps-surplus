@@ -1,6 +1,8 @@
 package com.cpssurplus.controllers
 
+import com.cpssurplus.domains.entities.Order
 import com.cpssurplus.enums.CountryCode
+import com.cpssurplus.services.OrderService
 import com.cpssurplus.services.UploadService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -18,10 +20,20 @@ class AdminController {
     @Autowired
     UploadService uploadService
 
+    @Autowired
+    OrderService orderService
+
     @GetMapping
     String index(Model model) {
         model.addAttribute("countries", CountryCode.values())
-        return 'admin'
+        return 'admin/admin'
+    }
+
+    @GetMapping("/orders")
+    String orders(Model model) {
+        List<Order> orders = orderService.getOrders()
+        model.addAttribute("orders", orders)
+        return 'admin/dashboard'
     }
 
     @PostMapping("/import")
