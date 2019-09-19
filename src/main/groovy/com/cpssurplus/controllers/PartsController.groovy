@@ -40,22 +40,9 @@ class PartsController {
     }
 
     @GetMapping("/detailed")
-    String detailed(Model model, @RequestParam Integer id, @RequestParam Integer orderId) {
-        model.addAttribute('order', orderId ? orderService.getOrder(orderId) : null)
+    String detailed(Model model, @RequestParam Integer id) {
         model.addAttribute('orderForm', new OrderForm())
         model.addAttribute("item", catalogueService.getItem(id))
-        //TODO: display 'order successfull' in detailed view
         return 'detailed'
-    }
-
-    @PostMapping("/order")
-    String order(Model model, @ModelAttribute OrderForm orderForm) {
-        Order order = null
-        try {
-            order = orderService.createOrder(orderForm)
-        } catch (Exception e) {
-
-        }
-        return "redirect:/detailed?id=${orderForm.partId}&orderId=${order?.id}"
     }
 }

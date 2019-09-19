@@ -36,8 +36,9 @@
             <div class="card-body" id="contact">
                 <div class="form">
                   <div id="errormessage"></div>
+                  <div id="sendmessage">Your order successfully created!</div>
                   <!--/*@thymesVar id="orderForm" type="com.cpssurplus.domains.forms.OrderForm"*/-->
-                    <form th:action="@{/parts/order}" method="post" role="form" th:object="${orderForm}" class="contactForm">
+                    <form th:action="@{/async/order}" method="post" role="form" th:object="${orderForm}" class="contactForm">
                         <div class="form-group">
                             <input type="text" th:field="*{name}" name="name" class="form-control" id="name"
                                    placeholder="Your Name" data-rule="minlen:2"

@@ -20,3 +20,11 @@ body {
 .align-center{
   text-align: center;
 }
+
+.form .badge-success {
+  text-align: center;
+}
+
+.form .badge-danger {
+  text-align: center;
+}

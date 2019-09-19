@@ -1,7 +1,11 @@
 package com.cpssurplus.domains.entities
 
+import com.cpssurplus.enums.OrderStatus
+
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
@@ -40,4 +44,10 @@ class Order {
     @Size(max = 2048)
     @Column(name = 'comment')
     String comment
+
+    @NotNull
+    @Column(name = 'status')
+    @Enumerated(EnumType.STRING)
+    OrderStatus status = OrderStatus.NEW
+
 }
