@@ -1,8 +1,22 @@
+function showSpinner() {
+  $("body").loadingModal({
+    text: 'Please wait, your request is being processed... ',
+    opacity: '0.9'
+  });
+  $("body").loadingModal('show');
+}
+
+function hideSpinner() {
+  $("body").loadingModal('hide');
+
+}
+
 jQuery(document).ready(function($) {
   "use strict";
 
   //Contact
   $('form.contactForm').submit(function() {
+    showSpinner();
     var f = $(this).find('.form-group'),
       ferror = false,
       emailExp = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i,
@@ -117,7 +131,7 @@ jQuery(document).ready(function($) {
           $("#errormessage").addClass("show");
           $('#errormessage').html(msg);
         }
-
+        hideSpinner()
       }
     });
     return false;
