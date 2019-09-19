@@ -1,5 +1,6 @@
 package com.cpssurplus.controllers
 
+import com.cpssurplus.domains.entities.Order
 import com.cpssurplus.domains.forms.ContactForm
 import com.cpssurplus.domains.forms.OrderForm
 import com.cpssurplus.services.MailClient
@@ -23,11 +24,26 @@ class ActionsRestController {
 
     @PostMapping("/order")
     String order(@ModelAttribute OrderForm orderForm) {
+        Order order
         try {
-            orderService.createOrder(orderForm)
+            order = orderService.createOrder(orderForm)
         } catch (Exception e) {
             e.printStackTrace()
             return 'Error occured on order processing. Please contact us to order directly.'
+        }
+
+        try {
+            mailClient.sendOrderNotification(orderForm, order)
+        } catch(Exception e) {
+            e.printStackTrace()
+        }
+
+        try {
+            mailClient.sendCustomerOrderNotification(orderForm, order)
+        } catch(Exception e) {
+            e.printStackTrace()
+            return "Your order have been processed, but we were unable to send you a confirmation email. Don't worry, " +
+                    "we'll get in touch with you soon."
         }
 
         return 'OK'
@@ -37,14 +53,12 @@ class ActionsRestController {
     String processMailForm(@ModelAttribute ContactForm contactForm) {
         try {
             mailClient.prepareAndSend(contactForm);
-        } catch(Exception e) {
-            switch (e) {
-                case { it instanceof MailException }:
-                    return "There is something wromg with our mail client. Please contact us using contacts section."
-                    break
-                default:
-                    return "Unknown internal error on processing your request. Please contact us using contacts section."
-            }
+        } catch(MailException mailException) {
+            mailException.printStackTrace()
+            return "There is something wromg with our mail client. Please contact us using contacts section."
+        } catch (Exception e) {
+            e.printStackTrace()
+            return "Unknown internal error on processing your request. Please contact us using contacts section."
         }
         return "OK";
     }
