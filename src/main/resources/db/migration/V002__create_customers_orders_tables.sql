@@ -8,6 +8,7 @@ CREATE TABLE customer(
 
 CREATE TABLE orders(
     id int primary key,
+    date_created timestamp default now() not null,
     part_id int not null,
     part_number varchar(512) not null,
     qty int not null,

@@ -6,6 +6,10 @@ server:
     context-path: /
 
 spring:
+  security:
+    user:
+      name: admin
+      password: 123456
   thymeleaf:
     cache: false
     mode: LEGACYHTML5
@@ -23,6 +27,9 @@ spring:
     hibernate:
       ddl-auto: update
     properties:
+      jadira:
+        usertype:
+          autoRegisterUserTypes: true
       hibernate:
         jdbc:
           lob:

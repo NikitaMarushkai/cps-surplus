@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository
 @Repository
 interface OrdersRepository extends JpaRepository<Order, Integer> {
 
+    List<Order> findAllByOrderByDateCreatedDesc()
+    List<Order> findAllByIdOrderByDateCreatedDesc(List<Integer> ids)
+
 }

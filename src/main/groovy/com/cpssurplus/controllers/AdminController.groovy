@@ -2,6 +2,7 @@ package com.cpssurplus.controllers
 
 import com.cpssurplus.domains.entities.Order
 import com.cpssurplus.enums.CountryCode
+import com.cpssurplus.enums.OrderStatus
 import com.cpssurplus.services.OrderService
 import com.cpssurplus.services.UploadService
 import org.springframework.beans.factory.annotation.Autowired
@@ -39,7 +40,14 @@ class AdminController {
     @PostMapping("/import")
     String readExcel(@RequestParam("excelFile") MultipartFile excelFile, CountryCode country) {
         uploadService.savePriceList(excelFile, country)
-        //todo: return number of saved items
+        //TODO: return number of saved items
         return "redirect:/admin"
+    }
+
+    @GetMapping("/changeOrderStatus")
+    String changeOrderStatus(@RequestParam Integer id, @RequestParam OrderStatus newStatus) {
+        Order order = orderService.getOrder(id)
+        orderService.processOrder(order, newStatus)
+        return "redirect:/admin/orders"
     }
 }

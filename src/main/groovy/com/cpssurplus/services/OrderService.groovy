@@ -5,6 +5,7 @@ import com.cpssurplus.domains.entities.Customer
 import com.cpssurplus.domains.entities.Order
 import com.cpssurplus.domains.forms.OrderForm
 import com.cpssurplus.domains.forms.SearchForm
+import com.cpssurplus.enums.OrderStatus
 import com.cpssurplus.repositories.CatalogueItemRepository
 import com.cpssurplus.repositories.CustomersRepository
 import com.cpssurplus.repositories.OrdersRepository
@@ -22,13 +23,34 @@ class OrderService {
     OrdersRepository ordersRepository
     @Autowired
     CatalogueService catalogueService
+    @Autowired
+    CatalogueItemRepository catalogueItemRepository
 
     Order getOrder(Integer id) {
         ordersRepository.getOne(id)
     }
 
     List<Order> getOrders(List<Integer> orderIds = []) {
-        orderIds ? ordersRepository.findAllById(orderIds) : ordersRepository.findAll()
+        orderIds ? ordersRepository.findAllByIdOrderByDateCreatedDesc(orderIds) :
+                ordersRepository.findAllByOrderByDateCreatedDesc()
+    }
+
+    @Transactional
+    void processOrder(Order order, OrderStatus newStatus) {
+        Customer orderCustomer = order.customer
+        order.status = newStatus
+        if (newStatus == OrderStatus.PAYED) {
+            orderCustomer.ordersCount += 1
+            customersRepository.save(orderCustomer)
+        } else if (newStatus == OrderStatus.REJECTED) {
+            CatalogueItem orderItem = order.part
+            orderItem.qty += order.qty
+            catalogueItemRepository.save(orderItem)
+            ordersRepository.delete(order)
+            return
+        }
+
+        ordersRepository.save(order)
     }
 
     @Transactional
@@ -50,8 +72,9 @@ class OrderService {
                 customer: orderOwner,
                 comment: orderForm.comment
         )
+        item.qty -= orderForm.qty
+        catalogueItemRepository.save(item)
         ordersRepository.save(order)
-        //TODO: Increment customer's orders count here or after processing
     }
 
     private Customer getOrRegisterCustomer(String email, String phone, String name) {

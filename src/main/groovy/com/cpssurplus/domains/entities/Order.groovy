@@ -1,6 +1,7 @@
 package com.cpssurplus.domains.entities
 
 import com.cpssurplus.enums.OrderStatus
+import org.joda.time.DateTime
 
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -22,6 +23,10 @@ class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Integer id
+
+    @NotNull
+    @Column(name = 'date_created')
+    DateTime dateCreated = DateTime.now()
 
     @ManyToOne
     @JoinColumn(name = 'part_id', referencedColumnName = 'id', nullable = false)

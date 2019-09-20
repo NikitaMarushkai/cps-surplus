@@ -106,6 +106,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <table class="table">
                                     <thead class=" text-primary">
                                     <th>Order #</th>
+                                    <th>Date created</th>
                                     <th>Part number</th>
                                     <th>QTY</th>
                                     <th>Comment</th>
@@ -114,11 +115,13 @@ The above copyright notice and this permission notice shall be included in all c
                                     <th>Customer phone</th>
                                     <th>Order status</th>
                                     <th>Processing</th>
+                                    <th>Reject order</th>
                                     </thead>
                                     <tbody>
                                     <!--/*@thymesVar id="orders" type="java.util.ArrayList<com.cpssurplus.domains.entities.Order>"*/-->
                                     <tr th:each="order, index : ${orders}">
                                         <td th:text="${order.id}"></td>
+                                        <td th:text="${order.dateCreated}"></td>
                                         <td th:text="${order.partNumber}"></td>
                                         <td th:text="${order.qty}"></td>
                                         <td th:text="${order.comment}"></td>
@@ -127,14 +130,19 @@ The above copyright notice and this permission notice shall be included in all c
                                         <td th:text="${order.customer.phone}"></td>
                                         <td th:text="${order.status}"></td>
                                         <th:block th:switch="${order.status}">
-                                          <td th:case="${T(com.cpssurplus.enums.OrderStatus).NEW}">
-                                            <a th:href="@{admin/changeOrderStatus(id=${order.id}, newStatus='PAYED')}">SET PAYED</a>
-                                          </td>
-                                          <td th:case="${T(com.cpssurplus.enums.OrderStatus).PAYED}">
-                                              <a th:href="@{admin/changeOrderStatus(id=${order.id}, newStatus='SHIPPED')}">SET SHIPPED</a>
-                                          </td>
-                                          <td th:case="${T(com.cpssurplus.enums.OrderStatus).SHIPPED}"></td>
+                                            <td th:case="${T(com.cpssurplus.enums.OrderStatus).NEW}">
+                                                <a th:href="@{/admin/changeOrderStatus(id=${order.id}, newStatus='PAYED')}">SET
+                                                    PAYED</a>
+                                            </td>
+                                            <td th:case="${T(com.cpssurplus.enums.OrderStatus).PAYED}">
+                                                <a th:href="@{/admin/changeOrderStatus(id=${order.id}, newStatus='SHIPPED')}">SET
+                                                    SHIPPED</a>
+                                            </td>
+                                            <td th:case="${T(com.cpssurplus.enums.OrderStatus).SHIPPED}"></td>
                                         </th:block>
+                                        <td>
+                                            <a th:href="@{/admin/changeOrderStatus(id=${order.id}, newStatus='REJECTED')}">REJECT</a>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -145,21 +153,23 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
         </div>
     </div>
-    <!--   Core JS Files   -->
-    <script src="/lib/jquery/jquery.min.js"></script>
-    <script src="/lib/popper/popper.min.js"></script>
-    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/lib/jquery/perfect-scrollbar.jquery.min.js"></script>
-    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="/lib/paper-dashboard/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
-    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-    <script src="/js/admin.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-            demo.initChartsPages();
-        });
-    </script>
+    <div th:fragment="admin-scripts">
+        <!--   Core JS Files   -->
+        <script src="/lib/jquery/jquery.min.js"></script>
+        <script src="/lib/popper/popper.min.js"></script>
+        <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/lib/jquery/perfect-scrollbar.jquery.min.js"></script>
+        <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+        <script src="/lib/paper-dashboard/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+        <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+        <script src="/js/admin.js"></script>
+        <script>
+            $(document).ready(function () {
+                // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+                demo.initChartsPages();
+            });
+        </script>
+    </div>
 </body>
 
 </html>
