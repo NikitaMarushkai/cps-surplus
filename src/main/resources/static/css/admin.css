@@ -187,3 +187,16 @@
   outline: none;
   display: none;
 }
+
+.card-body .badge-success {
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.card-body .badge-success p {
+  font-weight: bolder;
+}

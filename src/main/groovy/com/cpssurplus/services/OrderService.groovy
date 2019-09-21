@@ -70,6 +70,7 @@ class OrderService {
                 partNumber: item.partNumber,
                 qty: orderForm.qty,
                 customer: orderOwner,
+                shippingAddress: orderForm.shippingAddress,
                 comment: orderForm.comment
         )
         item.qty -= orderForm.qty

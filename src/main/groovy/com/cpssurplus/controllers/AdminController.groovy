@@ -1,8 +1,10 @@
 package com.cpssurplus.controllers
 
+import com.cpssurplus.domains.entities.Customer
 import com.cpssurplus.domains.entities.Order
 import com.cpssurplus.enums.CountryCode
 import com.cpssurplus.enums.OrderStatus
+import com.cpssurplus.services.CustomersService
 import com.cpssurplus.services.OrderService
 import com.cpssurplus.services.UploadService
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,10 +26,16 @@ class AdminController {
     @Autowired
     OrderService orderService
 
-    @GetMapping
-    String index(Model model) {
+    @Autowired
+    CustomersService customersService
+
+    @GetMapping("/upload")
+    String upload(Model model, @RequestParam(required = false) uploadCount) {
         model.addAttribute("countries", CountryCode.values())
-        return 'admin/admin'
+        if (uploadCount) {
+            model.addAttribute('itemsCount', uploadCount)
+        }
+        return 'admin/upload'
     }
 
     @GetMapping("/orders")
@@ -37,11 +45,17 @@ class AdminController {
         return 'admin/dashboard'
     }
 
-    @PostMapping("/import")
+    @GetMapping("/customers")
+    String customers(Model model) {
+        List<Customer> customers = customersService.getCustomers()
+        model.addAttribute('customers', customers)
+        return 'admin/customers'
+    }
+
+    @PostMapping("/uploadPrice")
     String readExcel(@RequestParam("excelFile") MultipartFile excelFile, CountryCode country) {
-        uploadService.savePriceList(excelFile, country)
-        //TODO: return number of saved items
-        return "redirect:/admin"
+        def uploaded = uploadService.savePriceList(excelFile, country)
+        return "redirect:/admin/upload?uploadCount=${uploaded}"
     }
 
     @GetMapping("/changeOrderStatus")

@@ -45,6 +45,10 @@ class Order {
     @ManyToOne
     @JoinColumn(name = 'customer_id', referencedColumnName = 'id', nullable = false)
     Customer customer
+    
+    @NotNull
+    @Column(name = 'shipping_address')
+    String shippingAddress
 
     @Size(max = 2048)
     @Column(name = 'comment')

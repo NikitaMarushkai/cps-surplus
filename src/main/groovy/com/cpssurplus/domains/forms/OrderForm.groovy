@@ -7,5 +7,6 @@ class OrderForm {
     String partNumber
     Integer partId
     Integer qty
+    String shippingAddress
     String comment
 }

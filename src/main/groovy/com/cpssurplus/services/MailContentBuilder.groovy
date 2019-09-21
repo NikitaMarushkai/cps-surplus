@@ -39,6 +39,7 @@ class MailContentBuilder {
         context.setVariable("name", orderForm.name)
         context.setVariable("partNumber", order.partNumber)
         context.setVariable("qty", order.qty)
+        context.setVariable("shippingAddress", orderForm.shippingAddress)
         context.setVariable("comment", order.comment)
         return templateEngine.process("mail/newOrderMailTemplate", context)
     }
@@ -49,6 +50,7 @@ class MailContentBuilder {
         context.setVariable("order", order.id)
         context.setVariable("partNr", order.partNumber)
         context.setVariable("qty", order.qty)
+        context.setVariable("shippingAddress", orderForm.shippingAddress)
         return templateEngine.process("mail/customerOrderConfirmationTemplate", context)
     }
 }

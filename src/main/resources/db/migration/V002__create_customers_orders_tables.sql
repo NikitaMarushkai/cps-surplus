@@ -13,6 +13,7 @@ CREATE TABLE orders(
     part_number varchar(512) not null,
     qty int not null,
     customer_id int not null,
+    shipping_address text not null,
     comment varchar(2048),
     status varchar(256) default 'NEW',
     foreign key (part_id) REFERENCES catalogue_item(id),

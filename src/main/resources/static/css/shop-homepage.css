@@ -13,3 +13,13 @@ body {
   background: black;
   border-radius: 10px;
 }
+
+.align-center{
+  text-align: center;
+}
+
+.empty-state {
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+}

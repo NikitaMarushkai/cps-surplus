@@ -1,2 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="admin/dashboard::admin-head"></head>
+<body>
+<div class="wrapper">
+    <div class="sidebar" data-color="white" data-active-color="danger" th:insert="admin/dashboard::admin-sidebar"></div>
+    <div class="main-panel">
+        <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+            <div class="container-fluid">
+                <div class="navbar-wrapper">
+                    <div class="navbar-toggle">
+                        <button type="button" class="navbar-toggler">
+                            <span class="navbar-toggler-bar bar1"></span>
+                            <span class="navbar-toggler-bar bar2"></span>
+                            <span class="navbar-toggler-bar bar3"></span>
+                        </button>
+                    </div>
+                    <a class="navbar-brand">Upload stock items</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Upload form</h4>
+                        </div>
+                        <div class="card-body">
+                            <div th:if="${itemsCount != null}" class="col-lg-12 badge-success">
+                                <p th:text="'Successfully uploaded ' + ${itemsCount} + ' items.'"></p>
+                            </div>
+                            <div class="form">
+                                <form th:action="@{/admin/uploadPrice}" method="post" class="contactForm" enctype="multipart/form-data">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <input type="file" th:name="excelFile" class="form-control-file"/>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <select th:name="country" class="form-control">
+                                                <option th:each="country, index : ${countries}"
+                                                        th:value="${country}" th:text="${country}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit">Import</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="admin/dashboard::admin-scripts"></div>
+</body>
+</html>

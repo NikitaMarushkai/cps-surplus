@@ -37,7 +37,7 @@ The above copyright notice and this permission notice shall be included in all c
     <link href="/css/admin.css" rel="stylesheet"/>
 </head>
 
-<body class="">
+<body>
 <div class="wrapper ">
     <div th:fragment="admin-sidebar" class="sidebar" data-color="white" data-active-color="danger">
         <!--
@@ -68,7 +68,7 @@ The above copyright notice and this permission notice shall be included in all c
                     </a>
                 </li>
                 <li>
-                    <a th:href="@{/admin/uploadPrice}">
+                    <a th:href="@{/admin/upload}">
                         <i class="nc-icon nc-tile-56"></i>
                         <p>Upload stock list</p>
                     </a>
@@ -109,6 +109,7 @@ The above copyright notice and this permission notice shall be included in all c
                                     <th>Date created</th>
                                     <th>Part number</th>
                                     <th>QTY</th>
+                                    <th>Shipping address</th>
                                     <th>Comment</th>
                                     <th>Customer name</th>
                                     <th>Customer email</th>
@@ -124,6 +125,7 @@ The above copyright notice and this permission notice shall be included in all c
                                         <td th:text="${order.dateCreated}"></td>
                                         <td th:text="${order.partNumber}"></td>
                                         <td th:text="${order.qty}"></td>
+                                        <td th:text="${order.shippingAddress}"></td>
                                         <td th:text="${order.comment}"></td>
                                         <td th:text="${order.customer.name}"></td>
                                         <td th:text="${order.customer.email}"></td>
@@ -153,7 +155,9 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
         </div>
     </div>
-    <div th:fragment="admin-scripts">
+</div>
+
+<div th:fragment="admin-scripts">
         <!--   Core JS Files   -->
         <script src="/lib/jquery/jquery.min.js"></script>
         <script src="/lib/popper/popper.min.js"></script>
