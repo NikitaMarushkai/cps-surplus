@@ -55,7 +55,7 @@ enum CountryCode {
 //    AF,
 //    BD,
 //    IE,
-    BE,
+    BE('Belgium'),
 //    BZ,
 //    BR,
 //    CH,
@@ -150,7 +150,7 @@ enum CountryCode {
 //    MT,
 //    FK,
 //    BH,
-    UZ,
+    UZ('Uzbekistan'),
 //    AZ,
 //    MC,
 //    HT,
@@ -244,4 +244,10 @@ enum CountryCode {
 //    SH,
 //    CC,
 //    EH
+
+    public String country
+
+    CountryCode(String country) {
+        this.country = country
+    }
 }

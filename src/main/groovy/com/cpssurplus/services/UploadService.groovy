@@ -74,7 +74,7 @@ class UploadService {
                 CatalogueItem catalogueRow = new CatalogueItem(
                         partNumber: formatter.formatCellValue(sheetRow.getCell(7)),
                         description: sheetRow.getCell(8)?.getStringCellValue(),
-                        price: sheetRow.getCell(2).getNumericCellValue() as BigDecimal,
+                        price: sheetRow.getCell(9).getNumericCellValue() as BigDecimal,
                         qty: sheetRow.getCell(11).getNumericCellValue() as Integer,
                         weight: sheetRow.getCell(10).getNumericCellValue() as BigDecimal,
                         dimensions: null,

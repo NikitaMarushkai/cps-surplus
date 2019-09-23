@@ -21,7 +21,7 @@
                 <p class="card-text" th:text="${item.description}"></p>
                 <p class="card-text" th:text="'Item weight: ' + ${item.weight} + 'kg'"></p>
                 <p class="card-text" th:text="${item.dimensions}? 'Package dimensions: ' + ${item.dimensions} : ''"></p>
-                <p class="card-text" th:text="'Item location: ' + ${item.location}"></p>
+                <p class="card-text" th:text="'Item location: ' + ${item.location.country}"></p>
                 <span>We have </span>
                 <span class="text-danger" th:text="${item.qty}"></span>
                 <span> items available</span>

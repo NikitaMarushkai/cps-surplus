@@ -40,7 +40,7 @@
                                         <div class="form-group col-md-6">
                                             <select th:name="country" class="form-control">
                                                 <option th:each="country, index : ${countries}"
-                                                        th:value="${country}" th:text="${country}"></option>
+                                                        th:value="${country}" th:text="${country.country}"></option>
                                             </select>
                                         </div>
                                     </div>
