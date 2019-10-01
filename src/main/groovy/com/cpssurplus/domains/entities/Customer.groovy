@@ -33,4 +33,8 @@ class Customer {
     @Min(0l)
     @Column(name = 'orders_count')
     Integer ordersCount = 0
+
+    @Column(name = 'subscribe_to_newsletter')
+    @NotNull
+    boolean subscribeToNewsletter = false
 }

@@ -55,7 +55,7 @@ class OrderService {
 
     @Transactional
     Order createOrder(OrderForm orderForm) {
-        Customer orderOwner = getOrRegisterCustomer(orderForm.email, orderForm.phone, orderForm.name)
+        Customer orderOwner = getOrRegisterCustomer(orderForm)
         CatalogueItem item = catalogueService.getItem(orderForm.partId)
         if (!orderOwner) {
             return null
@@ -78,16 +78,18 @@ class OrderService {
         ordersRepository.save(order)
     }
 
-    private Customer getOrRegisterCustomer(String email, String phone, String name) {
-        Customer customer = customersRepository.findByEmail(email)
+    private Customer getOrRegisterCustomer(OrderForm orderForm) {
+        Customer customer = customersRepository.findByEmail(orderForm.email)
         if (!customer) {
             customer = new Customer(
-                    email: email,
-                    phone: phone,
-                    name: name
+                    email: orderForm.email,
+                    phone: orderForm.phone,
+                    name: orderForm.name
             )
-            customersRepository.save(customer)
         }
+
+        customer.subscribeToNewsletter = customer.subscribeToNewsletter ? true : orderForm.subscribe
+        customersRepository.save(customer)
 
         customer
     }

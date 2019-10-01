@@ -26,7 +26,7 @@ class MailClient {
         MimeMessagePreparator messagePreparator = {
             MimeMessageHelper messageHelper = new MimeMessageHelper(it)
             messageHelper.setFrom(contactForm.email)
-            messageHelper.setTo("francis@parts-on-line.be")
+            messageHelper.setTo("surplus@parts-on-line.be")
             messageHelper.setSubject("CNH-surplus request " + contactForm.subject)
             String content = contentBuilder.buildContactRequest(contactForm)
             messageHelper.setText(content, true)
@@ -39,7 +39,7 @@ class MailClient {
         MimeMessagePreparator messagePreparator = {
             MimeMessageHelper messageHelper = new MimeMessageHelper(it)
             messageHelper.setFrom(orderForm.email)
-            messageHelper.setTo("francis@parts-on-line.be")
+            messageHelper.setTo("surplus@parts-on-line.be")
             messageHelper.setSubject("CNH-surplus new order #" + order.id)
             String content = contentBuilder.buildNewOrderRequest(order, orderForm)
             messageHelper.setText(content, true)
@@ -51,7 +51,7 @@ class MailClient {
     void sendCustomerOrderNotification(OrderForm orderForm, Order order) throws MailException {
         MimeMessagePreparator messagePreparator = {
             MimeMessageHelper messageHelper = new MimeMessageHelper(it)
-            messageHelper.setFrom("francis@parts-on-line.be")
+            messageHelper.setFrom("surplus@parts-on-line.be")
             messageHelper.setTo(orderForm.email)
             messageHelper.setSubject("Order confirmation #" + order.id)
             String content = contentBuilder.buildNewCustomerOrderConfirmation(order, orderForm)

@@ -65,7 +65,7 @@
 
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li class="menu-active"><a href="#intro">Home</a></li>
+                    <li class="menu-active"><a href="/#intro">Home</a></li>
                     <li><a href="/#about">About Us</a></li>
                     <li><a href="/#services">Supplied parts</a></li>
                     <li><a href="/#search">Our stocks</a></li>
@@ -101,9 +101,10 @@
                     <div class="carousel-container">
                         <div class="carousel-content">
                             <h2>The ONLY ON-LINE sales platform</h2>
-                            <p>Supported and authorized by CNH, listing inventory of GENUINE CNH surplus parts, located in:
+                            <p>Supported and authorized by CNH, listing inventory of GENUINE CNH surplus parts, located
+                                in:
                                 Europe, Middle East, Asia, Uzbekistan.</p>
-                            <a href="#search" class="btn-get-started scrollto">Order now</a>
+                            <a href="#search" class="btn-get-started scrollto">Search & reserve</a>
                         </div>
                     </div>
                 </div>
@@ -112,10 +113,11 @@
                     <div class="carousel-background"><img src="/img/intro-carousel/2.jpg" alt="Belgium warehouse"></div>
                     <div class="carousel-container">
                         <div class="carousel-content">
-                            <h2>A huge stock in Sprimont, Belgium</h2>
-                            <p>Our main warehouse is located in Sprimont, Belgium. Despite that, we ship our parts
-                                worldwide, so you can order them to any point in the world</p>
-                            <a href="#search" class="btn-get-started scrollto">Order now</a>
+                            <h2>Over 250,000 items of genuine cnh parts</h2>
+                            <p>Currently there is over 250,000 items of genuine cnh parts are listed on the web-site,
+                                and this number is still growing.
+                            </p>
+                            <a href="#search" class="btn-get-started scrollto">Search & reserve</a>
                         </div>
                     </div>
                 </div>
@@ -125,10 +127,11 @@
                     </div>
                     <div class="carousel-container">
                         <div class="carousel-content">
-                            <h2>A very large stock in Uzbekistan</h2>
-                            <p>And Belgium is not the only our warehouse. We have a large stock of CASE parts, located
-                                in Uzbekistan!</p>
-                            <a href="#search" class="btn-get-started scrollto">Order now</a>
+                            <h2>We offer genuine cnh parts at discounted prices</h2>
+                            <p>This site is dedicated to offer surplus stocks of genuine cnh parts at discounted
+                                prices. With over 38 years of supporting customers with cnh parts, we offer solutions
+                                for vintage parts, obsolete items, or hard to find parts.</p>
+                            <a href="#search" class="btn-get-started scrollto">Search & reserve</a>
                         </div>
                     </div>
                 </div>
@@ -137,10 +140,9 @@
                     <div class="carousel-background"><img src="/img/intro-carousel/4.jpg" alt="Bangok warehouse"></div>
                     <div class="carousel-container">
                         <div class="carousel-content">
-                            <h2>China stocks</h2>
-                            <p>We also have a large warehouse in China. You have option to order from any warehouse, to
-                                ensure you get the fastest delivery</p>
-                            <a href="#search" class="btn-get-started scrollto">Order now</a>
+                            <h2>CNH Construction</h2>
+                            <p>We have a huge surplus stock for cnh construction machines</p>
+                            <a href="#search" class="btn-get-started scrollto">Search & reserve</a>
                         </div>
                     </div>
                 </div>
@@ -149,10 +151,9 @@
                     <div class="carousel-background"><img src="/img/intro-carousel/5.jpg" alt="Germany warehouse"></div>
                     <div class="carousel-container">
                         <div class="carousel-content">
-                            <h2>Other European warehouses</h2>
-                            <p>We also have several warehouses located across Europe. So, we have them in Germany and
-                                Italy. You can order CNH parts and receive them lightning-fast</p>
-                            <a href="#search" class="btn-get-started scrollto">Order now</a>
+                            <h2>CNH Agriculture</h2>
+                            <p>We have a huge surplus stock for cnh agriculture machines</p>
+                            <a href="#search" class="btn-get-started scrollto">Search & reserve</a>
                         </div>
                     </div>
                 </div>
@@ -161,10 +162,31 @@
                     <div class="carousel-background"><img src="/img/intro-carousel/6.jpg" alt="Dubai warehouse"></div>
                     <div class="carousel-container">
                         <div class="carousel-content">
-                            <h2>Spare parts in Dubai</h2>
-                            <p>Also you have an option to order from our Dubai warehouse. We can get you spare parts for
-                                any CNH machinery, from our huge stock.</p>
-                            <a href="#search" class="btn-get-started scrollto">Order now</a>
+                            <h2>FIAT Construction</h2>
+                            <p>We have a huge surplus stock for fiat construction machines</p>
+                            <a href="#search" class="btn-get-started scrollto">Search & reserve</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="carousel-background"><img src="/img/intro-carousel/7.jpg" alt="Dubai warehouse"></div>
+                    <div class="carousel-container">
+                        <div class="carousel-content">
+                            <h2>DIESEL ENGINES</h2>
+                            <p>Also we can offer a stock of surplus diesel engine parts</p>
+                            <a href="#search" class="btn-get-started scrollto">Search & reserve</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="carousel-background"><img src="/img/intro-carousel/8.jpg" alt="Dubai warehouse"></div>
+                    <div class="carousel-container">
+                        <div class="carousel-content">
+                            <h2>Order what you need right now!</h2>
+                            <p>Click on search & reserve button to check if we may list your required item(s)</p>
+                            <a href="#search" class="btn-get-started scrollto">Search & reserve</a>
                         </div>
                     </div>
                 </div>
@@ -226,7 +248,7 @@
             <form th:action="@{/parts/search}" th:object="${searchForm}" method="post" role="form"
                   novalidate="novalidate">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-md-12">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-12 p-0">
                                 <input type="text" th:field="*{partNumber}" class="form-control search-slt"
@@ -238,6 +260,34 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 p-0">
                                 <button type="submit" class="btn btn-common wrn-btn">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row work-description">
+                            <div class="col-lg-12 align-center">
+                                <p class="font-weight-bold">How does this site work?</p>
+                            </div>
+                            <div class="col-lg-12">
+                                <ol>
+                                    <li>Enter desired part number or part name.</li>
+                                    <li>Were required part(s) located as surplus stock? Great.</li>
+                                    <li>Complete your details - full address (incl. zip code) e-mail & mobile nr.
+                                        (Please tick the box if you wish to remain on our mailing list, and receive
+                                        regular updates).
+                                    </li>
+                                    <li>Our team will search for best ways to ship the required part(s) to the address
+                                        you provided.
+                                    </li>
+                                    <li>Proforma invoice (Incl. shipping cost) with our bank details will be sent by
+                                        e-mail attachment.
+                                    </li>
+                                    <li>Payment by Visa or Master-Card will become acceptable.</li>
+                                    <li>Upon settling payment, consignment will be dispatched and tracking info will be
+                                        provided.
+                                    </li>
+                                    <li>PLEASE NOTE: Availability of surplus items are subject to remain unsold.</li>
+                                </ol>
                             </div>
                         </div>
                     </div>
@@ -405,6 +455,19 @@
                     </div>
                 </div>
 
+                <div class="col-md-3 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="about-col">
+                        <div class="img">
+                            <img src="/img/about-us/diesel.jpg" alt="" class="img-fluid">
+                            <div class="icon"><i class="ion-ios-eye-outline"></i></div>
+                        </div>
+                        <h2 class="title"><a href="#">Diesel engines</a></h2>
+                        <p>
+                            We have spare parts for Iveco, FPT, Cummins and Perkins diesel engines.
+                        </p>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -473,8 +536,8 @@
     <section id="call-to-action" class="wow fadeIn">
         <div class="container text-center">
             <h3>Order what you need at special price!</h3>
-            <p>Contact us right now to get the parts you need! You will very pleased by our prices!</p>
-            <a class="cta-btn" href="#contact">Order now</a>
+            <p>Order right now to get the parts you need! You will very pleased by our prices!</p>
+            <a class="cta-btn" href="#search">Search & reserve</a>
         </div>
     </section><!-- #call-to-action -->
 
@@ -629,7 +692,7 @@
                     <div class="contact-email">
                         <i class="ion-ios-email-outline"></i>
                         <h3>Email</h3>
-                        <p><a href="mailto:francis@parts-on-line.be​">francis@parts-on-line.be​</a></p>
+                        <p><a href="mailto:surplus@parts-on-line.be​">surplus@parts-on-line.be​</a></p>
                     </div>
                 </div>
 
@@ -638,7 +701,8 @@
             <div class="form">
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
-                <form th:action="@{/async/sendMail}" th:object="${contactForm}" method="post" role="form" class="contactForm">
+                <form th:action="@{/async/sendMail}" th:object="${contactForm}" method="post" role="form"
+                      class="contactForm">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <input type="text" th:field="*{name}" name="name" class="form-control" id="name"
@@ -720,7 +784,7 @@
                         B-4141 Louveigne (SPRIMONT) <br/>
                         BELGIUM <br/>
                         <strong>Phone:</strong> +32 4 257 71 98<br>
-                        <strong>Email:</strong> francis@parts-on-line.be​<br>
+                        <strong>Email:</strong> surplus@parts-on-line.be​<br>
                     </p>
 
                     <div class="social-links">

@@ -9,4 +9,5 @@ class OrderForm {
     Integer qty
     String shippingAddress
     String comment
+    Boolean subscribe
 }

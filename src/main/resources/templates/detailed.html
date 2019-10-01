@@ -73,6 +73,10 @@
                         <textarea class="form-control" th:field="*{comment}" name="message" rows="5"
                                   placeholder="Comments to your order"></textarea>
                         </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" th:field="*{subscribe}" id="subscribe" name="subscribe">
+                            <label class="form-check-label" for="subscribe">Subscribe to our news</label>
+                        </div>
                         <div class="align-center text-center">
                             <button type="submit" class="btn btn-success">Order</button>
                         </div>

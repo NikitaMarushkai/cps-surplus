@@ -1,0 +1,1 @@
+alter table customer add subscribe_to_newsletter boolean not null default false;
