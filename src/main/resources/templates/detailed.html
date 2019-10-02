@@ -22,7 +22,7 @@
                 <p class="card-text" th:text="'Item weight: ' + ${item.weight} + 'kg'"></p>
                 <p class="card-text" th:text="${item.dimensions}? 'Package dimensions: ' + ${item.dimensions} : ''"></p>
                 <p class="card-text" th:text="'Item location: ' + ${item.location.country}"></p>
-                <span>We have </span>
+                <span>Subject to remain unsold, </span>
                 <span class="text-danger" th:text="${item.qty}"></span>
                 <span> items available</span>
             </div>
@@ -31,7 +31,7 @@
 
         <div class="card card-outline-secondary my-4 col-lg-12">
             <div class="card-header">
-                You wish to order? Just fill up a form and your order will be processed!
+                To proceed with order, please complete the form hereunder.
             </div>
             <div class="card-body" id="contact">
                 <div class="form">
@@ -73,11 +73,20 @@
                         <textarea class="form-control" th:field="*{comment}" name="message" rows="5"
                                   placeholder="Comments to your order"></textarea>
                         </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" th:field="*{subscribe}" id="subscribe" name="subscribe">
-                            <label class="form-check-label" for="subscribe">Subscribe to our news</label>
+                        <div class="form-group">
+                            To comply with General Data Protection Regulation (GDPR) please tick one of the following options:
                         </div>
-                        <div class="align-center text-center">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" th:field="*{subscribe}" id="agree" name="subscribe" value="true">
+                            <label class="form-check-label" for="agree">Yes, please keep me on your mailing list</label><br/>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" th:field="*{subscribe}" id="notAgree" name="subscribe" value="false"
+                                   checked="checked">
+                            <label class="form-check-label active" for="notAgree">Unsubscribe my details from future mail</label>
+                        </div>
+                        <div class="align-center">
+                            <a href="/#search" class="btn btn-danger">Return to search</a>
                             <button type="submit" class="btn btn-success">Order</button>
                         </div>
                     </form>

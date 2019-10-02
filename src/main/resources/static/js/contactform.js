@@ -16,7 +16,6 @@ jQuery(document).ready(function($) {
 
   //Contact
   $('form.contactForm').submit(function() {
-    showSpinner();
     var f = $(this).find('.form-group'),
       ferror = false,
       emailExp = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i,
@@ -116,6 +115,7 @@ jQuery(document).ready(function($) {
     if( ! action ) {
       action = 'contactform/contactform.php';
     }
+    showSpinner();
     $.ajax({
       type: "POST",
       url: action,
@@ -125,7 +125,7 @@ jQuery(document).ready(function($) {
         if (msg == 'OK') {
           $("#sendmessage").addClass("show");
           $("#errormessage").removeClass("show");
-          $('.contactForm').find("input, textarea").val("");
+          $('.contactForm').find("input[type != 'hidden'], textarea").val("");
         } else {
           $("#sendmessage").removeClass("show");
           $("#errormessage").addClass("show");

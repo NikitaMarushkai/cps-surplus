@@ -17,6 +17,10 @@ body {
   font-weight: bolder;
 }
 
+.form .btn-danger {
+  padding: 10px 30px;
+}
+
 .align-center{
   text-align: center;
 }

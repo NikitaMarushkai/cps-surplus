@@ -88,7 +88,7 @@ class OrderService {
             )
         }
 
-        customer.subscribeToNewsletter = customer.subscribeToNewsletter ? true : orderForm.subscribe
+        customer.subscribeToNewsletter = customer.subscribeToNewsletter ? true : (orderForm.subscribe ?: false)
         customersRepository.save(customer)
 
         customer
