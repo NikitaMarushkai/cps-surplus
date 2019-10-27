@@ -1,0 +1,1 @@
+alter table catalogue_item alter column weight drop not null;

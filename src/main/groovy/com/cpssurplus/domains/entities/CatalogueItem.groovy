@@ -40,7 +40,6 @@ class CatalogueItem {
     @Column(name = "qty", nullable = false)
     Integer qty
 
-    @NotNull
     @Column(name = "weight", nullable = false)
     @Min(0l)
     BigDecimal weight

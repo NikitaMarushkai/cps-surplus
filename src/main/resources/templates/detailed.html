@@ -19,7 +19,9 @@
                 <h3 class="card-title" th:text="'Part number: ' + ${item.partNumber}"></h3>
                 <h4 th:text="'$' + ${item.price}"></h4>
                 <p class="card-text" th:text="${item.description}"></p>
-                <p class="card-text" th:text="'Item weight: ' + ${item.weight} + 'kg'"></p>
+                <div th:if="${item.weight != null}">
+                    <p class="card-text" th:text="'Item weight: ' + ${item.weight} + 'kg'"></p>
+                </div>
                 <p class="card-text" th:text="${item.dimensions}? 'Package dimensions: ' + ${item.dimensions} : ''"></p>
                 <p class="card-text" th:text="'Item location: ' + ${item.location.country}"></p>
                 <span>Subject to remain unsold, </span>

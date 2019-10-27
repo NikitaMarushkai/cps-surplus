@@ -13,8 +13,14 @@ class CatalogueService {
     CatalogueItemRepository catalogueItemRepository
 
     List<CatalogueItem> searchItems(SearchForm searchForm) {
-        catalogueItemRepository.findByPartNumberOrDescription(searchForm.partNumber.replaceAll('-', ''),
-                searchForm.partName)
+        String searchablePartNumber = searchForm.partNumber.replaceAll('-', '')
+        if (searchForm.partName) {
+            catalogueItemRepository.findByPartNumberOrDescription(searchablePartNumber,
+                    searchForm.partName)
+        } else {
+            catalogueItemRepository.findByPartNumber(searchablePartNumber)
+        }
+
     }
 
     CatalogueItem getItem(Integer id) {

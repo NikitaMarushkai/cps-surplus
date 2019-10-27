@@ -13,7 +13,7 @@ enum CountryCode {
 //    VN,
 //    FR,
 //    IT,
-//    AE,
+    AE('Dubai'),
 //    SE,
 //    KZ,
 //    PT,

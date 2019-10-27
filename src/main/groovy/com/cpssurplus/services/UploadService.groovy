@@ -33,11 +33,34 @@ class UploadService {
                 break
             case CountryCode.BE:
                 itemsList = fillBelgiumStock(worksheet, formatter)
+                break
+            case CountryCode.AE:
+                itemsList = fillDubaiStock(worksheet, formatter)
         }
 
         catalogueItemRepository.saveAll(itemsList)
 
         itemsList.size()
+    }
+
+    private static List<CatalogueItem> fillDubaiStock(HSSFSheet worksheet, DataFormatter formatter) {
+        List<CatalogueItem> itemsList = []
+        def rowNums = worksheet.getPhysicalNumberOfRows() - 2
+        rowNums.times {
+            def index = it + 3
+            HSSFRow sheetRow = worksheet.getRow(index)
+            if (formatter.formatCellValue(sheetRow?.getCell(4))) {
+                CatalogueItem catalogueRow = new CatalogueItem(
+                        partNumber: formatter.formatCellValue(sheetRow.getCell(4)),
+                        description: sheetRow.getCell(5)?.getStringCellValue(),
+                        price: sheetRow.getCell(7).getNumericCellValue() as BigDecimal,
+                        qty: sheetRow.getCell(6).getNumericCellValue() as Integer,
+                        location: CountryCode.AE.toString()
+                )
+                itemsList += catalogueRow
+            }
+        }
+        itemsList
     }
 
     private static List<CatalogueItem> fillBelgiumStock(HSSFSheet worksheet, DataFormatter formatter) {
@@ -52,7 +75,7 @@ class UploadService {
                         description: sheetRow.getCell(3)?.getStringCellValue(),
                         price: sheetRow.getCell(4).getNumericCellValue() as BigDecimal,
                         qty: sheetRow.getCell(5).getNumericCellValue() as Integer,
-                        weight: sheetRow.getCell(7).getNumericCellValue() as BigDecimal,
+                        weight: sheetRow.getCell(7)?.getNumericCellValue() as BigDecimal,
                         dimensions: sheetRow.getCell(9)?.getStringCellValue(),
                         note: sheetRow.getCell(8)?.getStringCellValue(),
                         location: CountryCode.BE.toString()
@@ -76,7 +99,7 @@ class UploadService {
                         description: sheetRow.getCell(8)?.getStringCellValue(),
                         price: sheetRow.getCell(9).getNumericCellValue() as BigDecimal,
                         qty: sheetRow.getCell(11).getNumericCellValue() as Integer,
-                        weight: sheetRow.getCell(10).getNumericCellValue() as BigDecimal,
+                        weight: sheetRow.getCell(10)?.getNumericCellValue() as BigDecimal,
                         dimensions: null,
                         note: null,
                         location: CountryCode.UZ.toString()
